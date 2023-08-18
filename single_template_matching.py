@@ -37,16 +37,17 @@ endX = startX + template.shape[1]
 endY = startY + template.shape[0]
 # draw the bounding box on the image
 cv2.rectangle(image, (startX, startY), (endX, endY), (255, 0, 0), 3)
-# show the output image
-cv2.imshow("Output", image)
-cv2.waitKey(0)
-# find coords of center of template
-TEMPLATE_CENTER_X = startX + template.shape[1]/2
-TEMPLATE_CENTER_Y = startY + template.shape[0]/2
-
 # find coords of center of main image
 IMAGE_CENTER_X = image.shape[1]/2
 IMAGE_CENTER_Y = image.shape[0]/2
+# draw dot in the center of an image
+cv2.circle(image, (int(IMAGE_CENTER_X), int(IMAGE_CENTER_Y)), 3, (0, 0, 255), 5)
+# show the output image
+cv2.imshow("Output", image)
+cv2.waitKey(0)
+
+
+
 
 TEMPLATE_CENTER_LAT = 50.600638
 TEMPLATE_CENTER_LON = 30.651464
