@@ -36,6 +36,8 @@ result = cv2.matchTemplate(imageGray, templateGray,
 endX = startX + template.shape[1]
 endY = startY + template.shape[0]
 # draw the bounding box on the image
+TEMPLATE_CENTER_X = startX + template.shape[1]/2
+TEMPLATE_CENTER_Y = startY + template.shape[0]/2
 cv2.rectangle(image, (startX, startY), (endX, endY), (255, 0, 0), 3)
 # find coords of center of main image
 IMAGE_CENTER_X = image.shape[1]/2
@@ -46,9 +48,7 @@ cv2.circle(image, (int(IMAGE_CENTER_X), int(IMAGE_CENTER_Y)), 3, (0, 0, 255), 5)
 cv2.imshow("Output", image)
 cv2.waitKey(0)
 
-
-
-
+# https://www.google.com.ua/maps/place/50%C2%B036'02.3%22N+30%C2%B039'05.3%22E/@50.6006414,30.6488891,17z/data=!3m1!4b1!4m4!3m3!8m2!3d50.600638!4d30.651464?hl=ru&entry=ttu
 TEMPLATE_CENTER_LAT = 50.600638
 TEMPLATE_CENTER_LON = 30.651464
 AZ = 335
@@ -87,4 +87,5 @@ distance, angle_degrees = get_distance_and_angle(TEMPLATE_CENTER_X, TEMPLATE_CEN
 
 real_angle = AZ - angle_degrees
 
-print(get_point_at_distance(TEMPLATE_CENTER_LAT, TEMPLATE_CENTER_LON, distance, real_angle))
+drone_coords = get_point_at_distance(TEMPLATE_CENTER_LAT, TEMPLATE_CENTER_LON, distance, real_angle)
+print(drone_coords)
